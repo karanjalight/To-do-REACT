@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -35,4 +36,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+.addTask{
+  background-color: coral;
+  height: auto;
+  width: 80%;
+  align-self: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-decoration: none;
 }

@@ -1,23 +1,59 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState} from "react"
+
+
 
 function App() {
+  const [todoList, setTodoList] = useState([])
+  const [inputTask, setInputTask] = useState("")
+
+
+  const handleInput = (event) => {
+    setInputTask(event.target.value)
+  }
+
+  const saveInput = () => {
+    setInputTask("");
+
+    const task =  {
+      id: todoList.length === 0 ? 1: todoList[todoList.length -1].id + 1,
+      taskName: inputTask,
+    }
+
+    setTodoList([...todoList, task])
+  }
+
+  const deleteHandler = (id) => {
+    const newTodoList = todoList.filter((task) => task.id !== id)
+
+    setTodoList(newTodoList)
+
+  }
+
+ 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    
+      <div className="addTask">
+        <input type="text" value={inputTask} onChange={handleInput} />
+
+        <button onClick={saveInput} >Add Task</button>
+        
+      </div>
+      <div className="addTask">
+
+        {todoList.map((task, hey) => {
+          return (
+            <div>
+              <h4 key={hey}>{task.taskName} </h4>
+              <button onClick={ () => deleteHandler(task.id)}>X</button>
+            </div>
+          )
+        })}
+      </div>
+
     </div>
   );
 }
