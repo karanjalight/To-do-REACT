@@ -20,6 +20,7 @@ function App() {
 
   const saveInput = () => {
     setInputTask("");
+    setInputDescriptionTask("");
 
     const task =  {
       id: todoList.length === 0 ? 1: todoList[todoList.length -1].id + 1,
@@ -69,8 +70,7 @@ function App() {
 
         <div className='addDesctiption'>
         <input type="text" value={inputDescriptionTask} onChange={handleInputDescription} />
-        </div>
-        
+        </div>    
         
         
 
