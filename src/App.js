@@ -9,6 +9,9 @@ function App() {
   const [inputDescriptionTask, setInputDescriptionTask] = useState("")
 
 
+  
+
+
   const handleInput = (event) => {
     setInputTask(event.target.value)
     
@@ -45,7 +48,21 @@ function App() {
     }))
 
 
-  }  
+  } 
+  
+  const completeFalseHandler = (id) => {
+    
+    setTodoList(todoList.map((task) => {
+      if (task.id === id ){
+        return {...task, complete:false};
+        
+      }else {
+        return task;
+      }
+    }))
+
+
+  } 
 
   const deleteHandler = (id) => {
     const newTodoList = todoList.filter((task) => task.id !== id)
@@ -80,6 +97,16 @@ function App() {
 
       <div className="displayTask">
 
+   
+
+  
+
+
+
+
+
+
+
         {todoList.map((task, hey) => {
           return (
             <div key={hey}>
@@ -101,8 +128,13 @@ function App() {
                 <h4 key={hey}>{task.id}  {task.taskName} </h4> 
                 <p> {task.taskDescription} </p>
                 <p> -Complete</p>
+                
+              <button style={{ backgroundColor: "blue", borderColor: 'green', }} onClick={ () => completeFalseHandler(task.id)}>In-Complete</button> 
+              <br/>
               </div> }
 
+              <br/>
+              
 
               <button style={{ backgroundColor: "green", borderColor: 'green', }} onClick={ () => completeHandler(task.id)}>Complete</button> 
 
